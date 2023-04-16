@@ -13,16 +13,21 @@ public class ViewCalendar extends JFrame
         CalendarMaker c = new CalendarMaker();
         add(c, BorderLayout.CENTER);
 
+        JPanel topPanel = new JPanel(new BorderLayout());
 
-        JPanel testS = new JPanel();
-        JTextArea text = new JTextArea(m.getToday().toString());
-        text.setFont(new Font("Arial", Font.PLAIN, 20));
-        testS.add(text);
-        add(testS, BorderLayout.NORTH);
+        JLabel monthYearLabel = new JLabel(m.getToday().getMonth().toString() + " " + m.getToday().getYear(), SwingConstants.CENTER);
+        monthYearLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        topPanel.add(monthYearLabel, BorderLayout.NORTH);
 
+        JLabel daysOfWeekLabel = new JLabel("SUN MON TUE WED THU FRI SAT", SwingConstants.CENTER);
+        daysOfWeekLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        topPanel.add(daysOfWeekLabel, BorderLayout.CENTER);
+
+        add(topPanel, BorderLayout.NORTH);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+
 
 
 
