@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6749c063-32b4-4aed-9e35-e87fba332d62" name="Changes" comment="" />
+    <list default="true" id="6749c063-32b4-4aed-9e35-e87fba332d62" name="Changes" comment="Entirely reworked my GUI calendar. Currently the view has the current date, day names, and all the days according to the given date.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2OULeVOODlzR1UKVxS8wgROReaA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -19,9 +31,18 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/David Vu/Desktop/Personal Coding Tests/PA1"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\David Vu\Desktop\SJSU Coding\CS151\Programs\PA4\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\David Vu\Desktop\SJSU Coding\CS151\Programs\PA4\src" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -31,6 +52,42 @@
       <option name="presentableId" value="Default" />
       <updated>1681610308638</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added initial MVC classes for calendar. Attempting the view of the calendar.">
+      <created>1681612918869</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681612918869</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added a decent looking view.">
+      <created>1681615131917</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681615131917</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added a decent looking view.">
+      <created>1681616940887</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681616940887</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Separated classes">
+      <created>1681678988567</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681678988567</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Entirely reworked my GUI calendar. Currently the view has the current date, day names, and all the days according to the given date.">
+      <created>1681683999287</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681683999287</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -43,5 +100,12 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added initial MVC classes for calendar. Attempting the view of the calendar." />
+    <MESSAGE value="Added a decent looking view." />
+    <MESSAGE value="Separated classes" />
+    <MESSAGE value="Entirely reworked my GUI calendar. Currently the view has the current date, day names, and all the days according to the given date." />
+    <option name="LAST_COMMIT_MESSAGE" value="Entirely reworked my GUI calendar. Currently the view has the current date, day names, and all the days according to the given date." />
   </component>
 </project>
