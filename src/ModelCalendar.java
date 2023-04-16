@@ -7,17 +7,17 @@ public class ModelCalendar
     // Model should hold a HashMap of dates and a arraylist of events, similar to our old calendar
 
     private HashMap<LocalDate, ArrayList<Event>> calendar;
-    private LocalDate today;
+    private LocalDate currentDate;
 
     public ModelCalendar(LocalDate today)
     {
-        this.today = today;
+        currentDate = today;
         calendar = new HashMap<>();
     }
 
-    public LocalDate getToday()
+    public LocalDate getCurrentDay()
     {
-        return today;
+        return currentDate;
     }
 
 

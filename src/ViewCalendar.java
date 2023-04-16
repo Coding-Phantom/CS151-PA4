@@ -15,7 +15,7 @@ public class ViewCalendar extends JFrame
 
         JPanel topPanel = new JPanel(new BorderLayout());
 
-        JLabel monthYearLabel = new JLabel(m.getToday().getMonth().toString() + " " + m.getToday().getYear(), SwingConstants.CENTER);
+        JLabel monthYearLabel = new JLabel(m.getCurrentDay().getMonth().toString() + " " + m.getCurrentDay().getYear(), SwingConstants.CENTER);
         monthYearLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         topPanel.add(monthYearLabel, BorderLayout.NORTH);
 
@@ -31,35 +31,6 @@ public class ViewCalendar extends JFrame
 
 
 
-
-    }
-
-    public class CalendarMaker extends JPanel
-    {
-        public CalendarMaker()
-        {
-            setLayout(new GridLayout(6, 7));
-
-            for (int i = 0; i < 42; i++)
-            {
-                add(new Days());
-            }
-
-        }
-
-
-    }
-
-    public class Days extends JComponent
-    {
-
-        @Override
-        public void paintComponent(Graphics g)
-        {
-            Graphics2D g2 = (Graphics2D) g;
-            Rectangle2D.Double daySquare = new Rectangle2D.Double(0, 0, 200, 200);
-            g2.draw(daySquare);
-        }
 
     }
 
