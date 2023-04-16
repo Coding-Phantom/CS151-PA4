@@ -19,7 +19,7 @@ public class ViewCalendar extends JFrame
         monthYearLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         topPanel.add(monthYearLabel, BorderLayout.NORTH);
 
-        JLabel daysOfWeekLabel = new JLabel("SUN MON TUE WED THU FRI SAT", SwingConstants.CENTER);
+        JLabel daysOfWeekLabel = new JLabel("SUN                     MON                     TUE                     WED                     THU                     FRI                     SAT", SwingConstants.CENTER);
         daysOfWeekLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         topPanel.add(daysOfWeekLabel, BorderLayout.CENTER);
 
