@@ -110,6 +110,15 @@ public class CalendarModel
 
     }
 
+    public boolean findDate(LocalDate d)
+    {
+        if (calendar.containsKey(d))
+        {
+            return true;
+        }
+        return false;
+    }
+
 
     public void attach(ChangeListener c)
     {

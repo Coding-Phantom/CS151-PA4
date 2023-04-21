@@ -15,14 +15,13 @@ public class Event {
      * Constructs an Event object with a name, time, and a boolean to determine if its a recurring event
      * @param name - the name of the event
      * @param time - the time of the event
-     * @param isOccurring - boolean to see if its recurring
      * precondition: time must be in military time
      */
-    public Event(String name, TimeInterval time, boolean isOccurring)
+    public Event(String name, TimeInterval time)
     {
         this.name = name;
         this.time = time;
-        this.isRecurring = isOccurring;
+
     }
 
     /**

@@ -44,7 +44,8 @@ public class DayViewFrame extends JFrame implements ChangeListener
     public void stateChanged(ChangeEvent e)
     {
         date.setText(m.getDate().toString());
-        System.out.println(m.getDate().toString());
+//        eventList.setText(m.viewDay(m.getDate()));
+//        System.out.println(m.viewDay(m.getDate()));
         this.repaint();
 
     }

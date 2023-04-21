@@ -2,6 +2,9 @@ package Calendar;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class CreateView extends JFrame
 {
@@ -48,9 +51,21 @@ public class CreateView extends JFrame
 
         JButton save = new JButton("Save");
         save.setFont(new Font("Arial", Font.PLAIN, 40));
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("H:mm");
         save.addActionListener(e ->
         {
             // Use the given JTextFields to add it to the model
+            String addName = eventName.getText();
+            LocalDate addDate = m.getDate();
+            LocalTime addStart = LocalTime.parse(timeStart.getText(), f);
+            LocalTime addEnd = LocalTime.parse(timeEnd.getText(), f);
+            TimeInterval addTime = new TimeInterval(addStart, addEnd);
+            Event addEvent = new Event(addName, addTime);
+
+            m.add(addDate, addEvent);
+
+            System.out.println(addName + " " + addDate.toString() + " " + addStart.toString() + " " + addEnd.toString());
+            System.out.println(m.getData());
 
             dispose();
 
