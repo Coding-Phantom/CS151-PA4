@@ -89,7 +89,6 @@ public class CalendarView extends JFrame implements ChangeListener
     public void stateChanged(ChangeEvent e)
     {
         System.out.println("It got a response!");
-        this.repaint();
     }
 
 
