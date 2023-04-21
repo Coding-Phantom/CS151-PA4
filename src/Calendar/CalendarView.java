@@ -12,10 +12,15 @@ public class CalendarView extends JFrame implements ChangeListener
     CalendarModel m;
     public CalendarView(CalendarModel model)
     {
+
+        // Link the model to the CalendarView
         m = model;
+
+        // Set the size and layout of the CalendarView
         setSize(1200, 900);
         setLayout(new BorderLayout());
 
+        // Top Panel - contains Month Year, and below the days of the week
         JPanel topPanel = new JPanel(new BorderLayout());
 
         JLabel monthYearLabel = new JLabel(m.getDate().getMonth().toString() + " " + m.getDate().getYear(), SwingConstants.CENTER);
@@ -28,6 +33,7 @@ public class CalendarView extends JFrame implements ChangeListener
 
         add(topPanel, BorderLayout.NORTH);
 
+        // Corner L that has the Create button
         JPanel cornerL = new JPanel();
         JButton create = new JButton("Create");
         create.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -36,6 +42,7 @@ public class CalendarView extends JFrame implements ChangeListener
 
         add(cornerL, BorderLayout.WEST);
 
+        // Corner R that has the Arrows
         JPanel cornerR = new JPanel();
         cornerR.setLayout(new FlowLayout());
         JButton left = new JButton("<");
@@ -45,10 +52,8 @@ public class CalendarView extends JFrame implements ChangeListener
 
         add(cornerR, BorderLayout.EAST);
 
-        // Create the calendar of squares
+        // Create the calendar of 7 x 6 JButtons
         CalendarPanel c = new CalendarPanel();
-
-
 
         add(c, BorderLayout.CENTER);
 
