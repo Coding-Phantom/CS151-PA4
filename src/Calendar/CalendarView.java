@@ -19,6 +19,10 @@ public class CalendarView extends JFrame implements ChangeListener
         // Set the size and layout of the CalendarView
         setSize(1200, 900);
         setLayout(new BorderLayout());
+        Point location = getLocation();
+        // Move the frame from the default position
+        location.x += 500;
+        setLocation(location);
 
         // Top Panel - contains Month Year, and below the days of the week
         JPanel topPanel = new JPanel(new BorderLayout());
@@ -36,6 +40,13 @@ public class CalendarView extends JFrame implements ChangeListener
         // Corner L that has the Create button
         JPanel cornerL = new JPanel();
         JButton create = new JButton("Create");
+        create.addActionListener(e ->
+        {
+
+            CreateView createView = new CreateView(m);
+
+
+        });
         create.setFont(new Font("Arial", Font.PLAIN, 20));
         create.setBackground(Color.RED);
         cornerL.add(create, BorderLayout.NORTH);
@@ -94,9 +105,26 @@ public class CalendarView extends JFrame implements ChangeListener
                     {
                         DateButton newDay = new DateButton(String.valueOf(dayCount.getDayOfMonth()), dayCount);
                         newDay.setFont(new Font("Arial", Font.PLAIN, 20));
+                        if(m.getDate().equals(dayCount))
+                        {
+                            newDay.setFont(new Font("Arial", Font.PLAIN, 50));
+                        }
                         newDay.setSize(180, 180);
 
                         newDay.addActionListener(e -> {
+                            JButton temp = (JButton) e.getSource();
+                            for (DateButton d : dayButtons)
+                            {
+                                if (d.equals(temp))
+                                {
+                                    d.setFont(new Font("Arial", Font.PLAIN, 50));
+                                }
+
+                                else
+                                {
+                                    d. setFont(new Font("Arial", Font.PLAIN, 20));
+                                }
+                            }
                             LocalDate current = finalDayCount;
                             m.viewDay(current);
                         });
@@ -111,8 +139,25 @@ public class CalendarView extends JFrame implements ChangeListener
                     {
                         DateButton newDay = new DateButton(String.valueOf(dayCount.getDayOfMonth()), dayCount);
                         newDay.setFont(new Font("Arial", Font.PLAIN, 20));
+                        if(m.getDate().equals(dayCount))
+                        {
+                            newDay.setFont(new Font("Arial", Font.PLAIN, 50));
+                        }
                         newDay.setSize(180, 180);
                         newDay.addActionListener(e -> {
+                            JButton temp = (JButton) e.getSource();
+                            for (DateButton d : dayButtons)
+                            {
+                                if (d.equals(temp))
+                                {
+                                    d.setFont(new Font("Arial", Font.PLAIN, 50));
+                                }
+
+                                else
+                                {
+                                    d. setFont(new Font("Arial", Font.PLAIN, 20));
+                                }
+                            }
                             LocalDate current = finalDayCount;
                             m.viewDay(current);
                         });
@@ -129,8 +174,25 @@ public class CalendarView extends JFrame implements ChangeListener
                 {
                     DateButton newDay = new DateButton(String.valueOf(dayCount.getDayOfMonth()), dayCount);
                     newDay.setFont(new Font("Arial", Font.PLAIN, 20));
+                    if(m.getDate().equals(dayCount))
+                    {
+                        newDay.setFont(new Font("Arial", Font.PLAIN, 50));
+                    }
                     newDay.setSize(180, 180);
                     newDay.addActionListener(e -> {
+                        JButton temp = (JButton) e.getSource();
+                        for (DateButton d : dayButtons)
+                        {
+                            if (d.equals(temp))
+                            {
+                                d.setFont(new Font("Arial", Font.PLAIN, 50));
+                            }
+
+                            else
+                            {
+                                d. setFont(new Font("Arial", Font.PLAIN, 20));
+                            }
+                        }
                         LocalDate current = finalDayCount;
                         m.viewDay(current);
                     });
@@ -148,9 +210,12 @@ public class CalendarView extends JFrame implements ChangeListener
                 {
                     dayButtons[i] = new DateButton(null, null);
                     add(dayButtons[i]);
+
                 }
 
             }
+
+
 
         }
 

@@ -15,6 +15,7 @@ public class DateButton extends JButton
 
     public LocalDate getDate()
     {
+
         return date;
     }
 

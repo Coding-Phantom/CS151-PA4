@@ -18,8 +18,8 @@ public class DayViewFrame extends JFrame implements ChangeListener
         setLayout(new BorderLayout());
         // Get the default location of the frame
         Point location = getLocation();
-        // Move the frame 50 pixels to the right
-        location.x += 1200;
+        // Move the frame from the default position
+        location.x += 1500;
         setLocation(location);
 
         date = new JLabel(m.getDate().toString());
