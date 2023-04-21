@@ -2,16 +2,18 @@ package Calendar;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.time.LocalDate;
 
-public class CalendarView extends JFrame
+public class CalendarView extends JFrame implements ChangeListener
 {
     CalendarModel m;
     public CalendarView(CalendarModel model)
     {
         m = model;
-        setSize(1200, 1000);
+        setSize(1200, 900);
         setLayout(new BorderLayout());
 
         JPanel topPanel = new JPanel(new BorderLayout());
@@ -20,13 +22,34 @@ public class CalendarView extends JFrame
         monthYearLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         topPanel.add(monthYearLabel, BorderLayout.NORTH);
 
-        JLabel daysOfWeekLabel = new JLabel("SUN                     MON                     TUE                     WED                     THU                     FRI                     SAT", SwingConstants.CENTER);
+        JLabel daysOfWeekLabel = new JLabel("SUN                 MON                 TUE                 WED                 THU                 FRI                 SAT", SwingConstants.CENTER);
         daysOfWeekLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         topPanel.add(daysOfWeekLabel, BorderLayout.CENTER);
 
         add(topPanel, BorderLayout.NORTH);
 
+        JPanel cornerL = new JPanel();
+        JButton create = new JButton("Create");
+        create.setFont(new Font("Arial", Font.PLAIN, 20));
+        create.setBackground(Color.RED);
+        cornerL.add(create, BorderLayout.NORTH);
+
+        add(cornerL, BorderLayout.WEST);
+
+        JPanel cornerR = new JPanel();
+        cornerR.setLayout(new FlowLayout());
+        JButton left = new JButton("<");
+        JButton right = new JButton(">");
+        cornerR.add(left);
+        cornerR.add(right);
+
+        add(cornerR, BorderLayout.EAST);
+
+        // Create the calendar of squares
         CalendarPanel c = new CalendarPanel();
+
+
+
         add(c, BorderLayout.CENTER);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -37,67 +60,106 @@ public class CalendarView extends JFrame
     public class CalendarPanel extends JPanel
     {
         // Keep reference of the DaySquare
-        private DaySquare[] daySquares;
+        private DateButton[] dayButtons;
 
         public CalendarPanel()
         {
-            daySquares = new DaySquare[42];
+            dayButtons = new DateButton[42];
             setLayout(new GridLayout(6, 7));
 
             // Find the first day of the month and add up from there
-            int dayCount = 1;
             boolean start = false;
             boolean disable = false;
 
             // this is the first day
             LocalDate firstDay = LocalDate.of(m.getDate().getYear(), m.getDate().getMonth(), 1);
-            LocalDate lastDay = firstDay.withDayOfMonth(firstDay.lengthOfMonth());
-            System.out.println(firstDay);
 
-            for (int i = 0; i < daySquares.length; i++)
+            // this is the last day
+            LocalDate lastDay = firstDay.withDayOfMonth(firstDay.lengthOfMonth());
+
+            // this is the day we will be incrementing
+            LocalDate dayCount = LocalDate.of(m.getDate().getYear(), m.getDate().getMonth(), 1);
+
+            for (int i = 0; i < dayButtons.length; i++)
             {
-                // Continues if start is enabled after finding the first day
+                LocalDate finalDayCount = dayCount;
                 if (start)
                 {
-                    if (dayCount <= lastDay.getDayOfMonth())
+                    if (dayCount.getDayOfMonth() < lastDay.getDayOfMonth() && firstDay.getMonth().equals(dayCount.getMonth()))
                     {
-                        daySquares[i] = new DaySquare(dayCount);
-                        add(daySquares[i]);
-                        dayCount++;
+                        DateButton newDay = new DateButton(String.valueOf(dayCount.getDayOfMonth()), dayCount);
+                        newDay.setFont(new Font("Arial", Font.PLAIN, 20));
+                        newDay.setSize(180, 180);
+
+                        newDay.addActionListener(e -> {
+                            LocalDate current = finalDayCount;
+                            m.viewDay(current);
+                        });
+                        dayButtons[i] = newDay;
+                        add(dayButtons[i]);
+                        dayCount = dayCount.plusDays(1);
+
                     }
 
+                    // The last day
                     else
                     {
-                        daySquares[i] = new DaySquare(0);
-                        add(daySquares[i]);
+                        DateButton newDay = new DateButton(String.valueOf(dayCount.getDayOfMonth()), dayCount);
+                        newDay.setFont(new Font("Arial", Font.PLAIN, 20));
+                        newDay.setSize(180, 180);
+                        newDay.addActionListener(e -> {
+                            LocalDate current = finalDayCount;
+                            m.viewDay(current);
+                        });
+
+                        dayButtons[i] = newDay;
+                        add(dayButtons[i]);
+                        System.out.println(dayCount);
                         start = false;
+
                     }
                 }
-
                 // If it finds the first day of the week, start printing
-                else if (i == firstDay.getDayOfWeek().getValue())
+                else if (i == firstDay.getDayOfWeek().getValue() && firstDay.getMonth().equals(dayCount.getMonth()))
                 {
-                    daySquares[i] = new DaySquare(dayCount);
-                    add(daySquares[i]);
-                    dayCount++;
+                    DateButton newDay = new DateButton(String.valueOf(dayCount.getDayOfMonth()), dayCount);
+                    newDay.setFont(new Font("Arial", Font.PLAIN, 20));
+                    newDay.setSize(180, 180);
+                    newDay.addActionListener(e -> {
+                        LocalDate current = finalDayCount;
+                        m.viewDay(current);
+                    });
+
+                    dayButtons[i] = newDay;
+                    add(dayButtons[i]);
+                    dayCount = dayCount.plusDays(1);
+
                     start = true;
+
                 }
 
                 // If it hasn't found the first day, print a empty square
                 else
                 {
-                    daySquares[i] = new DaySquare(0);
-                    add(daySquares[i]);
+                    dayButtons[i] = new DateButton(null, null);
+                    add(dayButtons[i]);
                 }
 
             }
 
         }
 
-        public DaySquare[] getDaySquares()
+        public JButton[] getDaySquares()
         {
-            return daySquares;
+            return dayButtons;
         }
+
+
+    }
+
+    public void stateChanged(ChangeEvent e)
+    {
+        System.out.println("It got a response!");
     }
 
 
