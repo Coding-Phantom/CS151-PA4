@@ -56,8 +56,19 @@ public class CalendarView extends JFrame implements ChangeListener
         // Corner R that has the Arrows
         JPanel cornerR = new JPanel();
         cornerR.setLayout(new FlowLayout());
+
         JButton left = new JButton("<");
+        left.addActionListener(e ->{
+           m.setDate(m.getDate().minusDays(1));
+           repaint();
+        });
+
         JButton right = new JButton(">");
+        right.addActionListener(e ->{
+            m.setDate(m.getDate().plusDays(1));
+            repaint();
+        });
+
         cornerR.add(left);
         cornerR.add(right);
 
@@ -230,6 +241,7 @@ public class CalendarView extends JFrame implements ChangeListener
     public void stateChanged(ChangeEvent e)
     {
         System.out.println("It got a response!");
+        this.repaint();
     }
 
 

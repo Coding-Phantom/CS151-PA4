@@ -29,6 +29,7 @@ public class CalendarModel
     public void setDate(LocalDate d)
     {
         date = d;
+        notifyListeners();
     }
 
     public HashMap<LocalDate, ArrayList<Event>> getData()
