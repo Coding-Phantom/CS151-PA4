@@ -132,6 +132,23 @@ public class CalendarModel
         return events;
     }
 
+    public boolean checkOverlap(Event e, LocalDate d)
+    {
+        if (calendar.containsKey(d))
+        {
+            for (Event ee : calendar.get(d))
+            {
+                if (ee.getTime().overlap(e.getTime()))
+                {
+                    System.out.println("Overlap!");
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
 
     public void attach(ChangeListener c)
     {
