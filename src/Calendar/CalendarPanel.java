@@ -153,8 +153,6 @@ public class CalendarPanel extends JPanel
 
         }
 
-
-
     }
 
     public JButton[] getDaySquares()

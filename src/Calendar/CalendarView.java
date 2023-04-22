@@ -46,7 +46,6 @@ public class CalendarView extends JFrame implements ChangeListener
 
             CreateView createView = new CreateView(m);
 
-
         });
         create.setFont(new Font("Arial", Font.PLAIN, 20));
         create.setBackground(Color.RED);
@@ -61,13 +60,13 @@ public class CalendarView extends JFrame implements ChangeListener
         JButton left = new JButton("<");
         left.addActionListener(e ->{
            m.setDate(m.getDate().minusDays(1));
-           repaint();
+           c.repaint();
         });
 
         JButton right = new JButton(">");
         right.addActionListener(e ->{
             m.setDate(m.getDate().plusDays(1));
-            repaint();
+            this.repaint();
         });
 
         cornerR.add(left);
