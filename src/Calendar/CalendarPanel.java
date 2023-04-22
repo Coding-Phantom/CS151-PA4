@@ -61,7 +61,8 @@ public class CalendarPanel extends JPanel
                             }
                         }
                         LocalDate current = finalDayCount;
-                        m.viewDay(current);
+//                      m.viewDay(current);
+                        m.setDate(current);
                     });
                     dayButtons[i] = newDay;
                     add(dayButtons[i]);
@@ -94,7 +95,8 @@ public class CalendarPanel extends JPanel
                             }
                         }
                         LocalDate current = finalDayCount;
-                        m.viewDay(current);
+//                       m.viewDay(current);
+                        m.setDate(current);
                     });
 
                     dayButtons[i] = newDay;
@@ -128,8 +130,9 @@ public class CalendarPanel extends JPanel
                             d. setFont(new Font("Arial", Font.PLAIN, 20));
                         }
                     }
-                    LocalDate current = finalDayCount;
-                    m.viewDay(current);
+                      LocalDate current = finalDayCount;
+//                    m.viewDay(current);
+                      m.setDate(current);
                 });
 
                 dayButtons[i] = newDay;

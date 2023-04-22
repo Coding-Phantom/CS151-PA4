@@ -10,7 +10,7 @@ public class DayViewFrame extends JFrame implements ChangeListener
     CalendarModel m;
     JLabel date;
 
-    JTextArea eventList;
+    JLabel eventList;
     public DayViewFrame(CalendarModel model)
     {
         m = model;
@@ -28,8 +28,14 @@ public class DayViewFrame extends JFrame implements ChangeListener
         title.add(date);
         add(title, BorderLayout.NORTH);
 
-        eventList = new JTextArea(m.viewDay(m.getDate()));
-        date.setFont(new Font("Arial", Font.PLAIN, 30));
+        eventList = new JLabel();
+        eventList.setFont(new Font("Arial", Font.PLAIN, 30));
+        if (m.findDate(m.getDate()))
+        {
+
+            eventList.setText("<html>" + m.getEvents(m.getDate()).replaceAll("\n", "<br>") + "</html>");
+        }
+
         JPanel eventPanel= new JPanel();
         eventPanel.add(eventList, BorderLayout.CENTER);
         add(eventPanel, BorderLayout.CENTER);
@@ -44,9 +50,17 @@ public class DayViewFrame extends JFrame implements ChangeListener
     public void stateChanged(ChangeEvent e)
     {
         date.setText(m.getDate().toString());
-//        eventList.setText(m.viewDay(m.getDate()));
+        if (m.findDate(m.getDate()))
+        {
+
+            eventList.setText("<html>" + m.getEvents(m.getDate()).replaceAll("\n", "<br>") + "</html>");
+        }
+
+        else
+        {
+            eventList.setText("");
+        }
 //        System.out.println(m.viewDay(m.getDate()));
-        this.repaint();
 
     }
 }

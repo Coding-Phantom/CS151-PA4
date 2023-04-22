@@ -58,7 +58,7 @@ public class Event {
      */
     public String toString()
     {
-        return name + "\n" + time;
+        return name + " " + time + "\n";
     }
 
 

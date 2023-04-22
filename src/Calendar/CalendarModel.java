@@ -88,27 +88,27 @@ public class CalendarModel
         }
     }
 
-    public String viewDay(LocalDate d)
-    {
-        setDate(d);
+//    public String viewDay(LocalDate d)
+//    {
+//        setDate(d);
+//
+//        String result = "";
+//
+//        if (calendar.containsKey(date))
+//        {
+//            result = calendar.get(date).toString();
+//        }
+//
+//        else if (!calendar.containsKey(date))
+//        {
+//            result = "No events on this date!";
+//        }
+//
+//        notifyListeners();
+//
+//        return result;
 
-        String result = "";
 
-        if (calendar.containsKey(date))
-        {
-            result = calendar.get(date).toString();
-        }
-
-        else if (!calendar.containsKey(date))
-        {
-            result = "No events on this date!";
-        }
-
-        notifyListeners();
-
-        return result;
-
-    }
 
     public boolean findDate(LocalDate d)
     {
@@ -117,6 +117,19 @@ public class CalendarModel
             return true;
         }
         return false;
+    }
+
+    public String getEvents(LocalDate d)
+    {
+        String events = "";
+        if (calendar.containsKey(d))
+        {
+            for (Event e : calendar.get(d))
+            {
+                events += e;
+            }
+        }
+        return events;
     }
 
 
