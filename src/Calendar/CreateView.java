@@ -14,6 +14,8 @@ public class CreateView extends JFrame
     JTextField timeStart;
     JTextField timeEnd;
 
+    JLabel status;
+
     public CreateView(CalendarModel model)
     {
         m = model;
@@ -49,12 +51,17 @@ public class CreateView extends JFrame
         timeEnd = new JTextField("xx:xx");
         timeEnd.setFont(new Font("Arial", Font.PLAIN, 30));
 
+        status = new JLabel();
+        status.setFont(new Font("Arial", Font.PLAIN, 30));
+        status.setBackground(Color.red);
+
+
         JButton save = new JButton("Save");
         save.setFont(new Font("Arial", Font.PLAIN, 40));
         DateTimeFormatter f = DateTimeFormatter.ofPattern("H:mm");
         save.addActionListener(e ->
         {
-            // Use the given JTextFields to add it to the model
+
             String addName = eventName.getText();
             LocalDate addDate = m.getDate();
             LocalTime addStart = LocalTime.parse(timeStart.getText(), f);
@@ -62,12 +69,24 @@ public class CreateView extends JFrame
             TimeInterval addTime = new TimeInterval(addStart, addEnd);
             Event addEvent = new Event(addName, addTime);
 
-            m.add(addDate, addEvent);
+            boolean createStatus= false;
+            // Use the given JTextFields to add it to the model
 
-            System.out.println(addName + " " + addDate.toString() + " " + addStart.toString() + " " + addEnd.toString());
-            System.out.println(m.getData());
 
-            dispose();
+            if (!m.checkOverlap(addEvent, addDate))
+            {
+                System.out.println(!m.checkOverlap(addEvent, addDate));
+                m.add(addDate, addEvent);
+                System.out.println(addName + " " + addDate.toString() + " " + addStart.toString() + " " + addEnd.toString());
+                System.out.println(m.getData());
+
+                dispose();
+            }
+            else
+            {
+                status.setText("Error, time overlap, try again");
+            }
+
 
         });
 
@@ -79,6 +98,7 @@ public class CreateView extends JFrame
         add(to);
         add(timeEnd);
         add(save);
+        add(status);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);

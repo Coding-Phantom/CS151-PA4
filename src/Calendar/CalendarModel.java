@@ -132,6 +132,7 @@ public class CalendarModel
         return events;
     }
 
+    // Returns true if it overlaps
     public boolean checkOverlap(Event e, LocalDate d)
     {
         if (calendar.containsKey(d))
@@ -141,10 +142,10 @@ public class CalendarModel
                 if (ee.getTime().overlap(e.getTime()))
                 {
                     System.out.println("Overlap!");
-                    return false;
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
         return false;
     }
