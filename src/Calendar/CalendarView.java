@@ -10,6 +10,16 @@ import java.time.LocalDate;
 public class CalendarView extends JFrame implements ChangeListener
 {
     CalendarModel m;
+    JPanel topPanel;
+    JLabel monthYearLabel;
+    JLabel daysOfWeekLabel;
+    JPanel cornerL;
+    JButton create;
+
+    JPanel cornerR;
+
+    JButton left;
+    JButton right;
     CalendarPanel c;
     public CalendarView(CalendarModel model)
     {
@@ -26,21 +36,21 @@ public class CalendarView extends JFrame implements ChangeListener
         setLocation(location);
 
         // Top Panel - contains Month Year, and below the days of the week
-        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel = new JPanel(new BorderLayout());
 
-        JLabel monthYearLabel = new JLabel(m.getDate().getMonth().toString() + " " + m.getDate().getYear(), SwingConstants.CENTER);
+        monthYearLabel = new JLabel(m.getDate().getMonth().toString() + " " + m.getDate().getYear(), SwingConstants.CENTER);
         monthYearLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         topPanel.add(monthYearLabel, BorderLayout.NORTH);
 
-        JLabel daysOfWeekLabel = new JLabel("SUN                 MON                 TUE                 WED                 THU                 FRI                 SAT", SwingConstants.CENTER);
+        daysOfWeekLabel = new JLabel("SUN                 MON                 TUE                 WED                 THU                 FRI                 SAT", SwingConstants.CENTER);
         daysOfWeekLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         topPanel.add(daysOfWeekLabel, BorderLayout.CENTER);
 
         add(topPanel, BorderLayout.NORTH);
 
         // Corner L that has the Create button
-        JPanel cornerL = new JPanel();
-        JButton create = new JButton("Create");
+        cornerL = new JPanel();
+        create = new JButton("Create");
         create.addActionListener(e ->
         {
 
@@ -54,16 +64,16 @@ public class CalendarView extends JFrame implements ChangeListener
         add(cornerL, BorderLayout.WEST);
 
         // Corner R that has the Arrows
-        JPanel cornerR = new JPanel();
+        cornerR = new JPanel();
         cornerR.setLayout(new FlowLayout());
 
-        JButton left = new JButton("<");
+        left = new JButton("<");
         left.addActionListener(e ->{
            m.setDate(m.getDate().minusDays(1));
            c.repaint();
         });
 
-        JButton right = new JButton(">");
+        right = new JButton(">");
         right.addActionListener(e ->{
             m.setDate(m.getDate().plusDays(1));
             this.repaint();
@@ -88,6 +98,10 @@ public class CalendarView extends JFrame implements ChangeListener
     public void stateChanged(ChangeEvent e)
     {
         System.out.println("It got a response!");
+        monthYearLabel.setText(m.getDate().getMonth().toString() + " " + m.getDate().getYear());
+        c.updateCalendar();
+        this.revalidate();
+        this.repaint();
     }
 
 

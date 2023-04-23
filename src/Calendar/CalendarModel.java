@@ -29,6 +29,7 @@ public class CalendarModel
     public void setDate(LocalDate d)
     {
         date = d;
+        System.out.println("Model setDate got ran.");
         notifyListeners();
     }
 
