@@ -5,7 +5,11 @@ import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class CalendarView extends JFrame implements ChangeListener
 {
@@ -15,6 +19,7 @@ public class CalendarView extends JFrame implements ChangeListener
     JLabel daysOfWeekLabel;
     JPanel cornerL;
     JButton create;
+    JButton quit;
 
     JPanel cornerR;
 
@@ -60,6 +65,27 @@ public class CalendarView extends JFrame implements ChangeListener
         create.setFont(new Font("Arial", Font.PLAIN, 20));
         create.setBackground(Color.RED);
         cornerL.add(create, BorderLayout.NORTH);
+
+        // Quit button that saves into file
+        quit = new JButton("Quit");
+        quit.addActionListener(e ->
+        {
+            try
+            {
+                FileWriter fileWriter = new FileWriter(new File("events.txt"), false);
+                fileWriter.write(m.printData());
+                fileWriter.close();
+
+            }
+
+            catch (Exception exception)
+            {
+                System.out.println("File exception occurred on quit");
+            }
+
+            System.exit(0);
+        });
+        cornerL.add(quit, BorderLayout.SOUTH);
 
         add(cornerL, BorderLayout.WEST);
 

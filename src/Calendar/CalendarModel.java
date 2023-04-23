@@ -3,6 +3,7 @@ package Calendar;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -158,6 +159,27 @@ public class CalendarModel
     }
 
 
+    public String printData()
+    {
+        String s = "";
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("M/d/yy");
+
+        // For every date in the HashMap
+        for (LocalDate d : calendar.keySet())
+        {
+            String dateFormatted = d.format(df);
+
+            // For every event in the Date key ArrayList
+            for (Event e : calendar.get(d))
+            {
+                s += e.getName() + "\n" + dateFormatted + " " + e.getTime() + "\n";
+            }
+
+        }
+
+        return s;
+
+    }
 
 
 }
