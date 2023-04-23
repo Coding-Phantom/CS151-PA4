@@ -6,6 +6,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A CreateView class that is another JFrame for the Create button. It is a main "View" and "Controller" in MVC.
+ */
+
 public class CreateView extends JFrame
 {
     CalendarModel m;
@@ -16,6 +20,10 @@ public class CreateView extends JFrame
 
     JLabel status;
 
+    /**
+     * Constructs the JFrame with components for the purpose of event creation of a particular date. Checks for time overlaps and assumes format is perfect.
+     * @param model
+     */
     public CreateView(CalendarModel model)
     {
         m = model;

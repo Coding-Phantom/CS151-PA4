@@ -8,11 +8,27 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class CalendarMain
+/**
+ * SimpleCalendarTester class that runs the MVC Calendar program. Also handles with events.txt file handling -- will create or load a events.txt file
+ * @author David Vu
+ * @version 1.0 4/23/23
+ */
+public class SimpleCalendarTester
 {
     public static void main(String[] args) throws IOException
     {
 
+        SimpleCalendarTester();
+
+    }
+
+    /***
+     * Creates a new model and views, and attaches the views to the model. Also reads the file with eventFileReader()
+     *
+     * @throws IOException
+     */
+    public static void SimpleCalendarTester() throws IOException
+    {
         CalendarModel model = new CalendarModel(LocalDate.now());
 
         eventFileReader(model);
@@ -26,6 +42,11 @@ public class CalendarMain
         System.out.println(model.printData());
     }
 
+    /***
+     * Reads events.txt and adds the data into the CalendarModel
+     * @param m the CalendarModel to add
+     * @throws IOException
+     */
     public static void eventFileReader(CalendarModel m) throws IOException
     {
         File file = new File("events.txt");
@@ -34,13 +55,14 @@ public class CalendarMain
         if (!file.exists())
         {
             file.createNewFile();
-            System.out.println("Event.txt created");
+            System.out.println("Creating new events.txt file.");
         }
 
         // If the file exists, load the file
         else if (file.exists())
         {
             readEvents = true;
+            System.out.println("Loading events.txt file.");
         }
 
         Scanner scan = new Scanner(file);

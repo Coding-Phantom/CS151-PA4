@@ -6,12 +6,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 
+/**
+ * CalendarPanel that creates a grid of 7x6 buttons that all have functionalities for its respective dates to the model. A key "View" in MVC.
+ */
 public class CalendarPanel extends JPanel
 {
     // Keep reference of the DaySquare
     private DateButton[] dayButtons;
     private CalendarModel m;
 
+    /**
+     * Creates a new Panel with the buttons. It highlights if the date the model is on is the current day.
+     * @param model
+     */
     public CalendarPanel(CalendarModel model)
     {
         m = model;
@@ -97,7 +104,7 @@ public class CalendarPanel extends JPanel
 
                     dayButtons[i] = newDay;
                     add(dayButtons[i]);
-                    System.out.println(dayCount);
+//                    System.out.println(dayCount);
                     start = false;
 
                 }
@@ -149,15 +156,24 @@ public class CalendarPanel extends JPanel
 
     }
 
+    /**
+     * Gets the button list
+     * @return
+     */
     public JButton[] getDaySquares()
     {
         return dayButtons;
     }
 
+
+    // I might've just made the panel wrong, this seems unorthodox. But it works!
+    /**
+     * Reruns the program to update to the new model.
+     */
     public void updateCalendar()
     {
         // Essentially just run the program again, it will now be updated with the Model changes
-        removeAll(); // remove all components from the panel, hard reseting it
+        removeAll(); // remove all components from the panel, hard resetting it
         dayButtons = new DateButton[42];
         setLayout(new GridLayout(6, 7));
 
@@ -240,7 +256,7 @@ public class CalendarPanel extends JPanel
 
                     dayButtons[i] = newDay;
                     add(dayButtons[i]);
-                    System.out.println(dayCount);
+//                  System.out.println(dayCount);
                     start = false;
 
                 }

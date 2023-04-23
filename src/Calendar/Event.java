@@ -1,14 +1,12 @@
 package Calendar;
 
 /**
- * An Event object class to hold events with TimeIntervals and has a way to determine if it's a recurring event
+ * An Event object class to hold events with TimeIntervals. Reused and changed code from my personal PA1 code
  *
  */
 public class Event {
     private String name;
     private TimeInterval time;
-
-    private boolean isRecurring;
 
 
     /**
@@ -40,16 +38,6 @@ public class Event {
     public TimeInterval getTime()
     {
         return time;
-    }
-
-
-    /**
-     * Returns true or false if its recurring
-     * @return true or false if its recurring
-     */
-    public boolean getIsReccuring()
-    {
-        return isRecurring;
     }
 
     /**

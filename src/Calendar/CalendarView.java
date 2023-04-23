@@ -11,6 +11,9 @@ import java.io.FileWriter;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * CalendarView that shows the Calendar respective to its correct days, arrows to move the days, create button to create an event, and a quit button. Implements ChangeListener. The main "View" in MVC.
+ */
 public class CalendarView extends JFrame implements ChangeListener
 {
     CalendarModel m;
@@ -26,6 +29,12 @@ public class CalendarView extends JFrame implements ChangeListener
     JButton left;
     JButton right;
     CalendarPanel c;
+
+    /**
+     * Creates a new view using the model. Shows the Calendar respective to its correct days, arrows to move the days, create button to create an event, and a quit button
+     *
+     * @param model the model to use for the view
+     */
     public CalendarView(CalendarModel model)
     {
 
@@ -121,9 +130,13 @@ public class CalendarView extends JFrame implements ChangeListener
     }
 
 
+    /**
+     * Runs when the model updates and notifies its listeners. Resets the view to reflect the model
+     * @param e  a ChangeEvent object
+     */
     public void stateChanged(ChangeEvent e)
     {
-        System.out.println("It got a response!");
+//        System.out.println("Calendar view responded");
         monthYearLabel.setText(m.getDate().getMonth().toString() + " " + m.getDate().getYear());
         c.updateCalendar();
         this.revalidate();

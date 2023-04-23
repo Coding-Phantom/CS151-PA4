@@ -7,6 +7,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * CalendarModel class that holds data for the Calendar. The absolute main "Model" in MVC
+ *
+ */
+
 public class CalendarModel
 {
     private LocalDate date;
@@ -15,6 +20,10 @@ public class CalendarModel
 
     private ArrayList<ChangeListener> listeners;
 
+    /**
+     * Constructs a CalendarModel object, with lists that hold data and another that holds listeners
+     * @param date
+     */
     public CalendarModel(LocalDate date)
     {
          this.date = date;
@@ -22,11 +31,19 @@ public class CalendarModel
          listeners = new ArrayList<ChangeListener>();
     }
 
+    /**
+     * Gets the date
+     * @return the date
+     */
     public LocalDate getDate()
     {
         return date;
     }
 
+    /**
+     * Sets the date, and notifies the listeners
+     * @param d the date to set
+     */
     public void setDate(LocalDate d)
     {
         date = d;
@@ -34,11 +51,21 @@ public class CalendarModel
         notifyListeners();
     }
 
+    /**
+     * Gets the HashMap data
+     * @return the HashMap data
+     */
     public HashMap<LocalDate, ArrayList<Event>> getData()
     {
         return calendar;
     }
 
+    /**
+     * Adds an event to a date on the HashMap
+     * @param d the Date to add
+     * @param e the event to add to that date
+     * @return true if it got added, false otherwise
+     */
     public boolean add(LocalDate d, Event e)
     {
         // Add the event to the particular hashmap
@@ -51,8 +78,8 @@ public class CalendarModel
             {
                 if (e.getTime().overlap(event.getTime()))
                 {
-                    // It overlaps, do not add
-                    System.out.println("Error! This event time overlaps with another event!");
+                    // It overlaps, do not ad
+                    // System.out.println("Error! This event time overlaps with another event!");
                     return false;
                 }
             }
@@ -81,6 +108,9 @@ public class CalendarModel
         return true;
     }
 
+    /**
+     * Notifies all the listeners in the listener list. Very important in MVC model.
+     */
     public void notifyListeners()
     {
         for (ChangeListener l : listeners)
@@ -90,28 +120,12 @@ public class CalendarModel
         }
     }
 
-//    public String viewDay(LocalDate d)
-//    {
-//        setDate(d);
-//
-//        String result = "";
-//
-//        if (calendar.containsKey(date))
-//        {
-//            result = calendar.get(date).toString();
-//        }
-//
-//        else if (!calendar.containsKey(date))
-//        {
-//            result = "No events on this date!";
-//        }
-//
-//        notifyListeners();
-//
-//        return result;
 
-
-
+    /**
+     * Finds whether a given date exists within the data
+     * @param d
+     * @return true if found, false otherwise
+     */
     public boolean findDate(LocalDate d)
     {
         if (calendar.containsKey(d))
@@ -121,6 +135,11 @@ public class CalendarModel
         return false;
     }
 
+    /**
+     * Prints the eventList of a given date in the data
+     * @param d
+     * @return the eventList as a String
+     */
     public String getEvents(LocalDate d)
     {
         String events = "";
@@ -134,7 +153,12 @@ public class CalendarModel
         return events;
     }
 
-    // Returns true if it overlaps
+    /**
+     * Checks the overlap between two times
+     * @param e the event to check its time for
+     * @param d the date to determine if other events may conflict with the new one
+     * @return true if it overlaps, false otherwise
+     */
     public boolean checkOverlap(Event e, LocalDate d)
     {
         if (calendar.containsKey(d))
@@ -143,7 +167,7 @@ public class CalendarModel
             {
                 if (ee.getTime().overlap(e.getTime()))
                 {
-                    System.out.println("Overlap!");
+//                    System.out.println("Overlap!");
                     return true;
                 }
             }
@@ -153,12 +177,20 @@ public class CalendarModel
     }
 
 
+    /**
+     * Adds a listener to the list.
+     * @param c the ChangeListener to add
+     */
     public void attach(ChangeListener c)
     {
         listeners.add(c);
     }
 
 
+    /**
+     * Prints the data in the format for events.txt
+     * @return the String of data
+     */
     public String printData()
     {
         String s = "";

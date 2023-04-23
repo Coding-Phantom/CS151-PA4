@@ -3,6 +3,11 @@ package Calendar;
 import javax.swing.*;
 import java.time.LocalDate;
 
+/**
+ * Custom DateButton class that holds the date within the Button. A "controller" component in MVC.
+ *
+ */
+
 public class DateButton extends JButton
 {
     private LocalDate date;

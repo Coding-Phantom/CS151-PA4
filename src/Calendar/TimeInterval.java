@@ -3,7 +3,7 @@ package Calendar;
 import java.time.LocalTime;
 
 /**
- * A TimeInterval class to hold two times.
+ * A TimeInterval class to hold two times. Reused code from my personal PA1 code
  *
  */
 public class TimeInterval
@@ -71,6 +71,6 @@ public class TimeInterval
             end = end.substring(1, end.length());
         }
 
-        return start + " - " + end;
+        return start + " " + end;
     }
 }
